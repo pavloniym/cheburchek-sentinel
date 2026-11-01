@@ -1,0 +1,5 @@
+services:
+  cheburchek-sentinel:
+    build:
+      context: ..
+      dockerfile: Dockerfile

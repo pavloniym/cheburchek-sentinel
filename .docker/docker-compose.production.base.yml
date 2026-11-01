@@ -1,0 +1,19 @@
+services:
+  cheburchek-sentinel:
+    image: ${APP_IMAGE:-cheburchek-sentinel:${APP_VERSION:-v0.0.0}}
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      DATABASE_PATH: /app/data/bot.sqlite
+    volumes:
+      - sentinel-data:/app/data
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-file: '3'
+        max-size: 50m
+
+volumes:
+  sentinel-data:

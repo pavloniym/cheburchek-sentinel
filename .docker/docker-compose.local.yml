@@ -1,0 +1,18 @@
+services:
+  cheburchek-sentinel:
+    image: cheburchek-sentinel:${APP_VERSION:-local}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      DATABASE_PATH: /app/data/bot.sqlite
+    volumes:
+      - ../src:/app/src:ro
+      - sentinel-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  sentinel-data:
