@@ -32,7 +32,7 @@ Production с локальной сборкой:
 docker compose -f .docker/docker-compose.production.base.yml -f .docker/docker-compose.production.build.yml up --build -d
 ```
 
-Production с готовым образом: задать `APP_IMAGE` (например, `ghcr.io/owner/cheburchek-sentinel:v1`) и использовать `.docker/docker-compose.production.base.yml` вместе с `.docker/docker-compose.production.image.yml`. Публикация образа в registry настраивается отдельно. SQLite сохраняется в Docker volume `sentinel-data`. Открывать входящие порты не требуется: бот использует long polling.
+Production с готовым образом: задать `APP_IMAGE` (например, `ghcr.io/owner/cheburchek-sentinel:v1`) в `.env` и использовать `.docker/docker-compose.production.base.yml` вместе с `.docker/docker-compose.production.image.yml`, передав `--env-file .env` в Compose. Публикация образа в registry настраивается отдельно. SQLite сохраняется в Docker volume `sentinel-data`. Открывать входящие порты не требуется: бот использует long polling.
 
 Публичный Cheburcheck ограничивает вызовы `/probe` по IP. Планировщик выполняет не более одной проверки в 15 секунд на экземпляр. Запускать следует один экземпляр бота на один токен и одну БД.
 
