@@ -36,6 +36,10 @@ Production с готовым образом: задать `APP_IMAGE` (напр�
 
 Публичный Cheburcheck ограничивает вызовы `/probe` по IP. Планировщик выполняет не более одной проверки в 15 секунд на экземпляр. Запускать следует один экземпляр бота на один токен и одну БД.
 
+## Автоматический деплой
+
+Push в `main` или ручной запуск workflow `Build and deploy` запускает сборку образа в GHCR и обновляет контейнер на сервере. Для Actions используются secrets `PROD_SSH_PRIVATE_KEY`, `PROD_KNOWN_HOSTS`, `TELEGRAM_BOT_TOKEN` и variables `PROD_HOST`, `PROD_USER`, `PROD_DIRECTORY`. Файл `.env` создаётся на сервере с правами `600`; образ отмечается SHA коммита. Данные SQLite остаются в volume при обновлении.
+
 ## Разработка
 
 ```sh
