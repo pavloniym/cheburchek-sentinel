@@ -70,4 +70,5 @@ jobs:
             docker compose --env-file .env -f .docker/docker-compose.production.base.yml \
               -f .docker/docker-compose.production.image.yml pull && \
             docker compose --env-file .env -f .docker/docker-compose.production.base.yml \
-              -f .docker/docker-compose.production.image.yml up -d --remove-orphans"
+              -f .docker/docker-compose.production.image.yml up -d --remove-orphans && \
+            docker logout ghcr.io"
